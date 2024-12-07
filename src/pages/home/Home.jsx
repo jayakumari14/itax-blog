@@ -143,20 +143,20 @@ function Home() {
 
           <div className="max-w-7xl lg:px-12 mx-auto" ref={containerRef}>
             <div id="servicesNav">
-              {/* <ul
+              <ul
                 className="my-12 px-3 py-3 text-sm mx-auto gap-2 flex flex-row overflow-hidden border md:rounded-lg shadow-sm rounded-md"
                 style={{
                   gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
                 }}
               >
                 {pageData.navcards
-                  ? pageData.navcards.map((element, index) => {
+                  ? pageData.navcards.map((element) => {
                       return (
                         <>
                           {element.name && (
                             <HoveringNavCard
                               ref={(el) => (refs.current[element.name] = el)}
-                              key={element.name || index}
+                              key={element.name}
                               id={"nav" + element.name}
                               onClick={() => {
                                 const scrollDiv = document.getElementById(
@@ -178,7 +178,7 @@ function Home() {
                       );
                     })
                   : null}
-              </ul> */}
+              </ul>
             </div>
 
             <div id="servicesSection" className="max-w-6xl mx-auto relative">
@@ -196,12 +196,12 @@ function Home() {
                             <h4 className="text-slate-800 text-lg lg:text-[32px] font-semibold text-center flex-wrap my-8">
                               {element.name}
                             </h4>
-                            {/* <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
-                              {element.cards.map((items, index) => (
+                            <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
+                              {element.cards.map((items) => (
                                 <>
                                   {items.heading && items.content && (
                                     <li
-                                      key={items.heading || index}
+                                      key={items.heading}
                                       className="flex flex-col justify-between h-52 hover:translate-y-1 transition-all max-w-xs mx-auto shadow-lg rounded-lg overflow-hidden border w-full"
                                     >
                                       <div className="flex items-center px-5 text-sm  py-2 bg-primary text-white font-semibold rounded-t-lg">
@@ -230,18 +230,18 @@ function Home() {
                                             <Icon icon="tabler:arrow-right" />
                                           </p>
                                         </Link>
-                                        <Link
-                                          href={element.readMoreLink || ""}
-                                          className="py-2 link hover:text-primary"
-                                        >
-                                          Read More..
-                                        </Link>
+                                        {/* <Link
+                                      href={element.readMoreLink || ''}
+                                      className="py-2 link hover:text-primary"
+                                    >
+                                      Read More..
+                                    </Link> */}
                                       </div>
                                     </li>
                                   )}
                                 </>
                               ))}
-                            </ul> */}
+                            </ul>
                           </div>
                         )}
                       </>
