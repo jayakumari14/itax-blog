@@ -2,20 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-@media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --primary: 216 70% 55%;
+    --secondary: 273 100% 36%;
+    --accent: 0 100% 50%;
+
+    --txt: 233 12% 13%;
+    --bg_1: 0 0% 98%;
+    --bg_2: 0 0% 90%;
+  }
+
+  .dark {
+    --primary: 216 70% 55%;
+    --secondary: 273 100% 36%;
+    --accent: 0 100% 50%;
+
+    --txt: 0 0% 98%;
+    --bg_1: 0 0% 05%;
+    --bg_2: 0 0% 15%;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.react-pdf__Page__textContent,
+.react-pdf__Page__annotations.annotationLayer {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Components */
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    height: 5px;
+    width: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+
+  /* headings */
+  .heading-1 {
+    @apply p-2 font-extrabold lg:text-5xl text-4xl;
+  }
+  .heading-2 {
+    @apply p-2 font-extrabold lg:text-5xl text-3xl;
+  }
+  .heading-3 {
+    @apply p-2 font-bold lg:text-3xl text-2xl;
+  }
+  .heading-4 {
+    @apply p-2 font-bold lg:text-3xl text-2xl;
+  }
+  .heading-5 {
+    @apply p-2 font-semibold lg:text-2xl text-xl;
+  }
+  .heading-6 {
+    @apply p-2 font-semibold lg:text-lg text-lg;
+  }
+  /* Description */
+  .description {
+    @apply text-sm text-slate-800;
+  }
+  /* paragraphs */
+  .paragraph-xs {
+    @apply text-sm font-normal text-neutral-600;
+  }
+  .paragraph-sm {
+    @apply text-base font-normal text-neutral-600;
+  }
+  .paragraph-md {
+    @apply text-lg font-medium text-neutral-600;
+  }
+  .paragraph-lg {
+    @apply text-xl font-semibold text-neutral-800;
+  }
+  .paragraph-xl {
+    @apply text-2xl font-semibold text-neutral-950;
+  }
+  .paragraph-2xl {
+    @apply text-3xl font-bold text-neutral-950;
+  }
+
+  /* button */
+  .btn-primary {
+    @apply bg-primary text-white rounded-md px-4 py-3 focus:ring-4 focus:ring-blue-300 transition-all duration-200 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-gray-500 hover:bg-gray-600 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-success {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-green-500 hover:bg-green-600 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-danger {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-red-500 hover:bg-red-600 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-warning {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-orange-400 hover:bg-orange-500 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-info {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-cyan-500 hover:bg-cyan-600 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-light {
+    @apply inline-block px-6 py-2 rounded-md text-black bg-gray-200 hover:bg-gray-300 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  .btn-dark {
+    @apply inline-block px-6 py-2 rounded-md text-white bg-gray-800 hover:bg-gray-700 hover:scale-105 transition-[transform,_colors] duration-300;
+  }
+  /* spinner */
+  .spinner {
+    @apply animate-spin inline-block w-4 h-4 border-[3px] border-current border-t-transparent text-white rounded-full;
+  }
+  /* form */
+  .label {
+    @apply text-neutral-500 text-sm font-light tracking-tighter;
+  }
+  .input {
+    @apply block w-full rounded-md px-4 py-1 outline outline-1 outline-neutral-500/60 focus:outline-2 focus:outline-blue-500;
+  }
+  .select {
+    @apply block w-full rounded-md px-4 py-[5px] outline outline-1 outline-neutral-500/60 focus:outline-2 focus:outline-blue-500;
+  }
+}
+
+.textOver {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
 }

@@ -1,0 +1,79 @@
+.dashboard-wrapper {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "header header"
+    "side main"
+    "side footer";
+
+}
+.dashboard-top-navbar {
+    grid-area: header;
+}
+.dashboard-side-navbar {
+    grid-area: side;
+}
+.dashboard-main-body {
+    grid-area: main;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+@media (max-width: 1024px) {
+    .dashboard-wrapper {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    }
+    .dashboard-side-navbar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        padding-top: 3.5rem;
+    }
+}
+
+
+
+
+
+/* Firefox */
+.dashboard-wrapper * {
+    scrollbar-width: thin;
+    scrollbar-color: #003789 #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+.dashboard-wrapper *::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: #003789;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-thumb:hover {
+    background-color: #0056D6;
+}
+
+.dashboard-wrapper *::-webkit-scrollbar-thumb:active {
+    background-color: #5686E1;
+}

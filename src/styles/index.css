@@ -1,0 +1,76 @@
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+li {
+  font-size: inherit
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.react-pdf__Page__textContent,
+.react-pdf__Page__annotations.annotationLayer {
+  display: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  /* border: 1px solid #dddddd; */
+  text-align: left;
+  padding: 8px;
+  border: 1px solid grey;
+}
+
+
+/*///////////////*/
+@layer base {
+  :root {
+    --primary: 216 70% 55%;
+    --secondary: 273 100% 36%;
+    --accent: 0 100% 50%;
+
+    --txt: 233 12% 13%;
+    --bg_1: 0 0% 98%;
+    --bg_2: 0 0% 90%;
+  }
+  /* :root {
+        --primary: hsl(219, 70%, 55%); 
+        --secondary: hsl(273, 100%, 36%); 
+        --accent: hsl(0, 100%, 50%);
+    
+        --text: hsl(233, 12%, 13%);
+        --background: hsl(0, 0%, 98%); 
+    } */
+  .dark {
+    --primary: 216 70% 55%;
+    --secondary: 273 100% 36%;
+    --accent: 0 100% 50%;
+
+    --txt: 0 0% 98%;
+    --bg_1: 0 0% 05%;
+    --bg_2: 0 0% 15%;
+  }
+  /* .dark {
+        --primary: hsl(219, 70%, 55%); 
+        --secondary: hsl(273, 100%, 36%); 
+        --accent: hsl(0, 100%, 50%);
+    
+        --text: hsl(0, 0%, 98%); 
+        --background: hsl(0, 0%, 05%); 
+        --background-2: hsl(0, 0%, 15%); 
+    } */
+}
