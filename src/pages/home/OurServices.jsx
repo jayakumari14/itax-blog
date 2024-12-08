@@ -11,35 +11,39 @@ export default function OurServices({ ourServicesCards }) {
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-8 xl:gap-x-8">
         {ourServicesCards.map((element, i) => (
           <li
-            key={`key ${element.name + " " + i}`}
+            key={`service-${i}`} // Unique key for each list item
             className="shadow-lg rounded-md border border-gray-300 overflow-hidden p-8 lg:p-2 flex-grow flex-shrink-0"
           >
-            <h4 className="rounded-md text-center text-sm py-2   bg-primary  text-white font-semibold">
+            <h4 className="rounded-md text-center text-sm py-2 bg-primary text-white font-semibold">
               {element.heading}
             </h4>
-            <div className="flex flex-col justify-between ">
-              {element.items.map((item) => (
-                <>
-                  {item.label && (
+            <div className="flex flex-col justify-between">
+              {element.items.map(
+                (item, j) =>
+                  item.label && (
                     <Link
-                      key={item.label}
-                      className={`flex justify-between gap-4 items-center py-4 px-3  hover:text-blue-600 ${
+                      key={`item-${i}-${j}`} // Unique key for each item
+                      className={`flex justify-between gap-4 items-center py-4 px-3 hover:text-blue-600 ${
                         !item.link ? "pointer-events-none" : ""
                       }`}
-                      href={item.link ? item.link : "#"}
+                      href={item.link || "#"}
                     >
-                      <p className="font-semibold text-xs whitespace-nowrap ">
-                        {item.label}
-                      </p>
+                      <div className="flex items-center gap-2">
+                        <div className="bg-blue-100 rounded-full w-8 h-8 flex justify-center items-center">
+                          <Icon icon="carbon:document" width={20} />
+                        </div>
+                        <p className="font-semibold text-xs whitespace-nowrap">
+                          {item.label}
+                        </p>
+                      </div>
                       {!item.link && (
                         <span className="tracking-tighter text-xs bg-blue-100 text-gray-600 rounded-full px-1 italic">
                           Upcoming
                         </span>
                       )}
                     </Link>
-                  )}
-                </>
-              ))}
+                  )
+              )}
             </div>
           </li>
         ))}

@@ -150,101 +150,93 @@ function Home() {
                 }}
               >
                 {pageData.navcards
-                  ? pageData.navcards.map((element) => {
-                      return (
-                        <>
-                          {element.name && (
-                            <HoveringNavCard
-                              ref={(el) => (refs.current[element.name] = el)}
-                              key={element.name}
-                              id={"nav" + element.name}
-                              onClick={() => {
-                                const scrollDiv = document.getElementById(
-                                  element.name
-                                );
+                  ? pageData.navcards.map(
+                      (element, index) =>
+                        element.name && (
+                          <HoveringNavCard
+                            ref={(el) => (refs.current[element.name] = el)}
+                            key={index} // Unique key for each element
+                            id={"nav" + element.name}
+                            onClick={() => {
+                              const scrollDiv = document.getElementById(
+                                element.name
+                              );
+                              if (scrollDiv) {
                                 scrollDiv.scrollIntoView({
                                   behavior: "smooth",
                                   block: "center",
                                   inline: "center",
                                 });
                                 activeNav.current = scrollDiv;
-                              }}
-                              className="flex  text-slate-900 items-center justify-center w-4/6 font-semibold text-center cursor-pointer transition-transform-all transform transition-colors duration-300 ease-in-out hover:bg-blue-500 hover:shadow-md rounded-full"
-                            >
-                              {element.name}
-                            </HoveringNavCard>
-                          )}
-                        </>
-                      );
-                    })
+                              }
+                            }}
+                            className="flex text-slate-900 items-center justify-center w-4/6 font-semibold text-center cursor-pointer transition-transform-all transform transition-colors duration-300 ease-in-out hover:bg-blue-500 hover:shadow-md rounded-full"
+                          >
+                            {element.name}
+                          </HoveringNavCard>
+                        )
+                    )
                   : null}
               </ul>
             </div>
 
             <div id="servicesSection" className="max-w-6xl mx-auto relative">
               {pageData.navcards
-                ? pageData.navcards.map((element) => {
+                ? pageData.navcards.map((element, elementIndex) => {
                     return (
-                      <>
-                        {element.name && element.link && (
-                          <div
-                            ref={(el) => (cardRefs.current[element.name] = el)}
-                            key={element.name}
-                            className="relative"
-                            id={element.name}
-                          >
-                            <h4 className="text-slate-800 text-lg lg:text-[32px] font-semibold text-center flex-wrap my-8">
-                              {element.name}
-                            </h4>
-                            <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
-                              {element.cards.map((items) => (
-                                <>
-                                  {items.heading && items.content && (
-                                    <li
-                                      key={items.heading}
-                                      className="flex flex-col justify-between h-52 hover:translate-y-1 transition-all max-w-xs mx-auto shadow-lg rounded-lg overflow-hidden border w-full"
-                                    >
-                                      <div className="flex items-center px-5 text-sm  py-2 bg-primary text-white font-semibold rounded-t-lg">
-                                        <span className="pl-2">
-                                          {items.heading}
-                                        </span>
-                                      </div>
-                                      <p className=" max-h-[100px] overflow-hidden line-clamp-4 text-xs px-5 font-medium text-justify">
-                                        <p className="bg-blue-100 rounded-full w-10 p-2 text-center mb-2 mt-2 ">
-                                          <Icon
-                                            icon="carbon:document"
-                                            width={20}
-                                            className="ml-1 "
-                                          />
-                                        </p>
-                                        {items.content}
+                      element.name &&
+                      element.link && (
+                        <div
+                          ref={(el) => (cardRefs.current[element.name] = el)}
+                          key={elementIndex} // Assign a key to this div
+                          className="relative"
+                          id={element.name}
+                        >
+                          <h4 className="text-slate-800 text-lg lg:text-[32px] font-semibold text-center flex-wrap my-8">
+                            {element.name}
+                          </h4>
+                          <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
+                            {element.cards.map(
+                              (items, itemIndex) =>
+                                items.heading &&
+                                items.content && (
+                                  <li
+                                    key={itemIndex} // Assign a unique key for each list item
+                                    className="flex flex-col justify-between h-52 hover:translate-y-1 transition-all max-w-xs mx-auto shadow-lg rounded-lg overflow-hidden border w-full"
+                                  >
+                                    <div className="flex items-center px-5 text-sm py-2 bg-primary text-white font-semibold rounded-t-lg">
+                                      <span className="pl-2">
+                                        {items.heading}
+                                      </span>
+                                    </div>
+                                    <p className="max-h-[100px] overflow-hidden line-clamp-4 text-xs px-5 font-medium text-justify">
+                                      <p className="bg-blue-100 rounded-full w-10 p-2 text-center mb-2 mt-2">
+                                        <Icon
+                                          icon="carbon:document"
+                                          width={20}
+                                          className="ml-1"
+                                        />
                                       </p>
-                                      <div className="flex justify-end bg-zinc-100 px-5 gap-5 items-center">
-                                        <Link
-                                          href={element.link || ""}
-                                          target="_blank"
-                                          className=" py-5 text-xs link hover:text-primary"
-                                        >
-                                          <p className="flex flex-row items-center gap-1">
-                                            Continue{" "}
-                                            <Icon icon="tabler:arrow-right" />
-                                          </p>
-                                        </Link>
-                                        {/* <Link
-                                      href={element.readMoreLink || ''}
-                                      className="py-2 link hover:text-primary"
-                                    >
-                                      Read More..
-                                    </Link> */}
-                                      </div>
-                                    </li>
-                                  )}
-                                </>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                      </>
+                                      {items.content}
+                                    </p>
+                                    <div className="flex justify-end bg-zinc-100 px-5 gap-5 items-center">
+                                      <Link
+                                        href={element.link || ""}
+                                        target="_blank"
+                                        className="py-5 text-xs link hover:text-primary"
+                                      >
+                                        <p className="flex flex-row items-center gap-1">
+                                          Continue{" "}
+                                          <Icon icon="tabler:arrow-right" />
+                                        </p>
+                                      </Link>
+                                    </div>
+                                  </li>
+                                )
+                            )}
+                          </ul>
+                        </div>
+                      )
                     );
                   })
                 : null}
