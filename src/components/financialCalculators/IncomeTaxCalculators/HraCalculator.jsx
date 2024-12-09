@@ -1,14 +1,14 @@
-'use client';
-import React, { useState } from 'react';
-import { jsPDF } from 'jspdf';
+"use client";
+import React, { useState } from "react";
+import { jsPDF } from "jspdf";
 
 function App() {
-  const [basic, setBasic] = useState('');
-  const [hra, setHra] = useState('');
-  const [rent, setRent] = useState('');
+  const [basic, setBasic] = useState("");
+  const [hra, setHra] = useState("");
+  const [rent, setRent] = useState("");
   const [isMetro, setIsMetro] = useState(false);
-  const [da, setDa] = useState('');
-  const [otherAllowances, setOtherAllowances] = useState('');
+  const [da, setDa] = useState("");
+  const [otherAllowances, setOtherAllowances] = useState("");
   const [result, setResult] = useState(null);
 
   const calculateHRA = () => {
@@ -32,16 +32,16 @@ function App() {
   const handleDownload = () => {
     const doc = new jsPDF();
     doc.text(`HRA Calculation Result: ${result}`, 10, 10);
-    doc.save('HRA_Calculation_Result.pdf');
+    doc.save("HRA_Calculation_Result.pdf");
   };
 
   const clearFields = () => {
-    setBasic('');
-    setHra('');
-    setRent('');
+    setBasic("");
+    setHra("");
+    setRent("");
     setIsMetro(false);
-    setDa('');
-    setOtherAllowances('');
+    setDa("");
+    setOtherAllowances("");
     setResult(null);
   };
 

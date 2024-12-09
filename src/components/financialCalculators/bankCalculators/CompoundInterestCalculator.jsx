@@ -1,21 +1,21 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import Chart from 'chart.js/auto';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
+import React, { useState, useEffect, useRef } from "react";
+import Chart from "chart.js/auto";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 const sharedClasses = {
-  input: 'flex-1 border border-gray-300 rounded-lg p-1 bg-white text-sm',
-  label: 'block text-gray-700 font-medium text-sm',
-  container: 'mb-3',
-  button: 'p-1 rounded-lg text-white font-semibold text-xs',
-  card: 'bg-white shadow-sm rounded-lg p-3',
+  input: "flex-1 border border-gray-300 rounded-lg p-1 bg-white text-sm",
+  label: "block text-gray-700 font-medium text-sm",
+  container: "mb-3",
+  button: "p-1 rounded-lg text-white font-semibold text-xs",
+  card: "bg-white shadow-sm rounded-lg p-3",
 };
 
-const resultCard = 'bg-white shadow-sm rounded-lg p-3 mb-3';
-const resultTitle = 'text-base font-semibold text-gray-800';
-const resultValue = 'text-lg font-bold text-gray-700';
+const resultCard = "bg-white shadow-sm rounded-lg p-3 mb-3";
+const resultTitle = "text-base font-semibold text-gray-800";
+const resultValue = "text-lg font-bold text-gray-700";
 
 const CompoundInterestCalculator = () => {
   const [principal, setPrincipal] = useState(1000);
@@ -40,19 +40,19 @@ const CompoundInterestCalculator = () => {
   };
 
   const updateChart = (principal, totalInterest) => {
-    const ctx = chartRef.current.getContext('2d');
+    const ctx = chartRef.current.getContext("2d");
     if (chartInstance.current) {
       chartInstance.current.destroy();
     }
     chartInstance.current = new Chart(ctx, {
-      type: 'doughnut',
+      type: "doughnut",
       data: {
-        labels: ['Principal amount', 'Total interest'],
+        labels: ["Principal amount", "Total interest"],
         datasets: [
           {
             data: [principal, totalInterest],
-            backgroundColor: ['#3b82f6', '#93c5fd'],
-            borderColor: '#ffffff',
+            backgroundColor: ["#3b82f6", "#93c5fd"],
+            borderColor: "#ffffff",
             borderWidth: 1,
           },
         ],
@@ -63,7 +63,7 @@ const CompoundInterestCalculator = () => {
         plugins: {
           legend: {
             display: true,
-            position: 'top',
+            position: "top",
           },
         },
       },
@@ -71,7 +71,7 @@ const CompoundInterestCalculator = () => {
   };
 
   const handlePrint = () => {
-    const printContent = document.querySelector('.print-content');
+    const printContent = document.querySelector(".print-content");
     if (!printContent) return;
 
     const originalContent = document.body.innerHTML;
@@ -97,17 +97,17 @@ const CompoundInterestCalculator = () => {
   };
 
   const handleDownloadPDF = async () => {
-    const element = document.querySelector('.print-content');
+    const element = document.querySelector(".print-content");
     if (!element) return;
 
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     const canvas = await html2canvas(element, { scale: 2 });
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL("image/png");
 
-    const doc = new jsPDF('p', 'mm', 'a4');
-    doc.addImage(imgData, 'PNG', 10, 10, 190, 0); // Adjust width as needed
-    doc.save('interest_calculator.pdf');
+    const doc = new jsPDF("p", "mm", "a4");
+    doc.addImage(imgData, "PNG", 10, 10, 190, 0); // Adjust width as needed
+    doc.save("interest_calculator.pdf");
   };
 
   const handleClear = () => {
@@ -161,7 +161,7 @@ const CompoundInterestCalculator = () => {
                   onChange={(e) => setRate(parseFloat(e.target.value))}
                   className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 />
-                <div className="flex items-center bg-primary text-white rounded-r px-4">
+                <div className="flex items-center bg-primary text-white rounded-r px-3">
                   %
                 </div>
                 <input
@@ -203,19 +203,19 @@ const CompoundInterestCalculator = () => {
             <div className="mt-4">
               <button
                 onClick={handlePrint}
-                className={`bg-blue-500 hover:bg-blue-600 ${sharedClasses.button}`}
+                className={`bg-blue-500 hover:bg-blue-600 px-5 py-3 ${sharedClasses.button}`}
               >
                 Print
               </button>
               <button
                 onClick={handleDownloadPDF}
-                className={`bg-blue-700 hover:bg-blue-800 ml-2 ${sharedClasses.button}`}
+                className={`bg-blue-700 hover:bg-blue-800 ml-2 px-5 py-3 ${sharedClasses.button}`}
               >
                 Download PDF
               </button>
               <button
                 onClick={handleClear}
-                className={`bg-red-500 hover:bg-red-600 ml-2 ${sharedClasses.button}`}
+                className={`bg-red-500 hover:bg-red-600 ml-2 px-5 py-3 ${sharedClasses.button}`}
               >
                 Clear
               </button>
@@ -225,7 +225,7 @@ const CompoundInterestCalculator = () => {
           <div className="flex-1 mt-4 sm:mt-0">
             <div
               className="chart-container"
-              style={{ width: '100%', height: '250px' }}
+              style={{ width: "100%", height: "250px" }}
             >
               <canvas ref={chartRef}></canvas>
             </div>
